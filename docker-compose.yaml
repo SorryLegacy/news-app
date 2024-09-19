@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  app1:
+    image: python:3.12
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app
+    depends_on:
+      - db
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    networks:
+      - kraftstream
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: "${DATABASE_USER}"
+      POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
+      POSTGRES_DB: "${DATABASE_DB}"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - kraftstream
+
+volumes:
+  postgres_data:
+
+networks:
+  kraftstream:
+    external:
+      name: kraftstream

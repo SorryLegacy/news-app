@@ -1,0 +1,36 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+    -   id: check-added-large-files
+        exclude: 'static/|templates/'
+    -   id: check-ast
+        exclude: 'static/|templates/'
+    -   id: check-case-conflict
+        exclude: 'static/|templates/'
+    -   id: check-docstring-first
+        exclude: 'static/|templates/'
+    -   id: check-json
+        exclude: 'static/|templates/'
+    -   id: check-merge-conflict
+        exclude: 'static/|templates/'
+    -   id: check-toml
+        exclude: 'static/|templates/'
+    -   id: check-xml
+        exclude: 'static/|templates/'
+    -   id: check-yaml
+        exclude: 'static/|templates/'
+    -   id: debug-statements
+        exclude: 'static/|templates/'
+    -   id: end-of-file-fixer
+        exclude: 'static/|templates/'
+    -   id: trailing-whitespace
+        exclude: 'static/|templates/'
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.2
+
+    hooks:
+        - id: ruff
+          args: [ --fix, --select, I]
+        - id: ruff-format
